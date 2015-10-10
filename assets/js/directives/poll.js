@@ -7,12 +7,14 @@ pollModule.controller('pollCtrl', ['$scope', function($scope) {
         $scope.dataset = $scope.data.options.map(function(option) {
             return {
                 value: option.amount,
-                color: 'red',   // TODO: add proper colors from the config
-                highlight: 'blue',
                 label: option.name
             };
         });
-        // TODO: adding colors to the dataset
+
+        $scope.dataset.forEach(function(dataset, index) {
+            dataset.color = chartColors[index].color;
+            dataset.highlight = chartColors[index].highlight;
+        });
 
         console.log($scope.dataset);
     }

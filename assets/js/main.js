@@ -22,7 +22,20 @@ devoter.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
         });
 }]);
 
+devoter.filter('percent', function() {
+    return function(input) {
+        input = input || 0;
+        input *= 100;
+        if(input - Math.floor(input) !== 0)
+            input = Math.floor(input);
+
+        return input/100;
+    };
+});
 
 angular.element(document).ready(function() {
     angular.bootstrap(document, ['devoter']);
 });
+
+// Make charts responsive
+Chart.defaults.global.responsive = true;

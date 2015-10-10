@@ -44,7 +44,9 @@ module.exports = function(grunt) {
 
         scsslint: {
             allFiles: [
-                'assets/styles/style.scss'
+                'assets/styles/style.scss',
+                'assets/styles/*.scss',
+                'assets/styles/partials/*.scss'
             ],
 
             options: {
@@ -63,7 +65,7 @@ module.exports = function(grunt) {
             },
 
             scss: {
-                files: ['assets/styles/*.scss'],
+                files: ['assets/styles/*.scss', 'assets/styles/partials/*.scss'],
                 tasks: ['compile-scss'],
 
                 options: {
