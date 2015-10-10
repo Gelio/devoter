@@ -9,5 +9,5 @@ newPollModule.directive('newPoll', function() {
         restrict: 'E',
         templateUrl: 'assets/templates/new-poll.html',
         controller: 'newPollCtrl'
-    }
+    };
 });

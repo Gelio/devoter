@@ -1,0 +1,10 @@
+<div ng-show="!data">Poll couldn't be retrieved. We're working on fixing this issue.</div>
+
+<div ng-show="data">
+    <h1>{{data.name}}</h1>
+    <cjs-pie dataset="dataset"></cjs-pie>
+    <div>
+        <h2>Data</h2>
+        <pre>{{dataset | json}}</pre>
+    </div>
+</div>

@@ -3,8 +3,19 @@
 A web app that enables any anonymous user to create a poll, add any number of options to it and then publish it or make it private and ask only those who have a direct link.
 
 ## Todo: ##
-* layout
-* database
+* layout and templates
+    * main-page.html
+    * new-poll.html
+    * poll.html
+    * popular-polls.html
+    * view-poll.html
+* front-end logic:
+    * displaying polls
+    * fetching polls for the main page
+    * fetching polls for the popular polls list
+    * adding a new poll
+    * fetching a single poll
+* database *done*
 * back-end scripts:
     * adding a new poll with options
     * displaying a single poll

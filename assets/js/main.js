@@ -1,4 +1,4 @@
-var devoter = angular.module('devoter', ['ui.router', 'chartjs', 'mainPage', 'newPoll', 'popularPolls', 'viewPoll']);
+var devoter = angular.module('devoter', ['ui.router', 'chartjs', 'mainPage', 'newPoll', 'popularPolls', 'viewPoll', 'polls']);
 
 devoter.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');

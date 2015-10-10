@@ -9,5 +9,5 @@ popularPollsModule.directive('popularPolls', function() {
         restrict: 'E',
         templateUrl: 'assets/templates/popular-polls.html',
         controller: 'popularPollsCtrl'
-    }
+    };
 });

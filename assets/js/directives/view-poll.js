@@ -9,5 +9,5 @@ viewPollsModule.directive('viewPoll', function() {
         restrict: 'E',
         templateUrl: 'assets/templates/view-poll.html',
         controller: 'viewPollCtrl'
-    }
+    };
 });

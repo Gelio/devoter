@@ -11,7 +11,7 @@ module.exports = function(grunt) {
         },
 
         jshint: {
-            all: ['Gruntfile.js', 'assets/js/*.js']
+            all: ['Gruntfile.js', 'assets/js/*.js', 'assets/js/*/*.js']
         },
 
         clean: {
@@ -54,7 +54,7 @@ module.exports = function(grunt) {
 
         watch: {
             js: {
-                files: ['Gruntfile.js', 'assets/js/*.js'],
+                files: ['Gruntfile.js', 'assets/js/*.js', 'assets/js/*/*.js'],
                 tasks: ['process-js'],
 
                 options: {
