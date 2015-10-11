@@ -1,1 +1,30 @@
 New poll
+<?php
+$nazwa = $_POST['name'];
+$opcje = $_POST['options'];
+for($i=0;$i<=$opcje;$i++)
+{
+$op_nazw[i]=$_POST["opname_$i"];
+}
+//kod sanitujący - php pod
+//połącz z bazą
+insert into polls values($id,$nazwa,0,$date);
+$id++;
+for($i=0;$i<=$opcje;$i++)
+{
+insert into options values($id,$oid,$op_nazw[i],0);
+$oid++;
+}
+?>
+Vote
+<?php
+$ip = $_POST['IP'];
+//połącz z bazą
+$opcja =$_POST['option'];
+$ankieta=$_POST['poll'];
+if(!select count * from ip_voted where poll_id=$ankieta and IP=$ip)
+update polls set total_votes=total_votes+1 where id=$ankieta;
+update options set answers=answers+1 where id=$opcja;
+insert into ip_voted values($idv,$ankieta,$ip);
+$idv++
+?>
