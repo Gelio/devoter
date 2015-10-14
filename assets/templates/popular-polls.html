@@ -1,1 +1,22 @@
-Popular polls
+<div class="container">
+    <h1>Popular polls</h1>
+
+    <div>
+        <table class="table">
+            <thead class="thead-default">
+                <tr>
+                    <th>Name</th>
+                    <th>Expiration date</th>
+                    <th>Total votes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="poll in polls" class="table-row-link" ui-sref="view-poll({pollID: poll.id})">
+                    <td>{{poll.name}}</td>
+                    <td>{{poll.expDate}}</td>
+                    <td>{{poll.totalVotes}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

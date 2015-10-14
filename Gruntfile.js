@@ -50,7 +50,8 @@ module.exports = function(grunt) {
             ],
 
             options: {
-                colorizeOutput: true
+                colorizeOutput: true,
+                config: 'assets/styles/.scss-lint.yml'
             }
         },
 

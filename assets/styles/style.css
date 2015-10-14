@@ -29,3 +29,10 @@ body {
 .poll-chart {
   height: auto;
   width: 100%; }
+
+.table-row-link {
+  cursor: pointer;
+  -webkit-transition: background-color 120ms ease-in-out;
+          transition: background-color 120ms ease-in-out; }
+  .table-row-link:hover {
+    background-color: #cdcdcd; }

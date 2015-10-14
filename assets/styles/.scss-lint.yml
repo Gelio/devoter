@@ -1,0 +1,3 @@
+linters:
+  TrailingWhitespace:
+    enabled: false
