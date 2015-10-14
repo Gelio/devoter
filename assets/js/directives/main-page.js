@@ -7,19 +7,19 @@ mainPageModule.controller('mainPageCtrl', ['$scope', function($scope) {
                 new Option('B', 10),
                 new Option('C', 20)
             ],
-            'today'),
+            new Date()),
         new Poll(1, 'Poll 2', [
                 new Option('A', 40),
                 new Option('B', 80),
                 new Option('C', 20)
             ],
-            'today'),
+            new Date()),
         new Poll(2, 'Poll 3', [
                 new Option('A', 454),
                 new Option('B', 564),
                 new Option('C', 156)
             ],
-            'today')
+            new Date())
     ];
 }]);
 

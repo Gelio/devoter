@@ -10,6 +10,8 @@
  * @uses Option
  * @constructor
  */
+
+// TODO: add param to indicate whether the user has already voted or not
 var Poll = function(id, name, options, expDate, totalVotes) {
     this.id = id;
     this.name = name;

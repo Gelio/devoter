@@ -2,11 +2,13 @@
 
 <div ng-show="data">
     <h3>{{data.name}}</h3>
+
+    <!-- TODO: add parameter to limit it to around col-md-6 -->
     <div class="text-center">
         <cjs-pie dataset="dataset" class="poll-chart"></cjs-pie>
     </div>
 
-
+    <!-- TODO: param to show options as links -->
     <div>
         Options:
         <ul>
@@ -15,4 +17,6 @@
             </li>
         </ul>
     </div>
+
+    <!-- TODO: add expiration date if should be shown (another parameter) -->
 </div>

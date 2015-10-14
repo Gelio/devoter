@@ -1,0 +1,61 @@
+[
+  {
+    "id": 1,
+    "name": "Poll 1",
+    "expDate": 1444838974,
+    "options": [
+      {
+        "name": "Option 1",
+        "amount": 10
+      },
+      {
+        "name": "Option 2",
+        "amount": 20
+      },
+      {
+        "name": "Option 3",
+        "amount": 40
+      }
+    ]
+  },
+
+  {
+    "id": 2,
+    "name": "Poll 2",
+    "expDate": 1444838574,
+    "options": [
+      {
+        "name": "Option 1",
+        "amount": 15
+      },
+      {
+        "name": "Option 2",
+        "amount": 89
+      },
+      {
+        "name": "Option 3",
+        "amount": 84
+      }
+    ]
+  },
+
+  {
+    "id": 3,
+    "name": "Poll 3",
+    "expDate": 1444838884,
+    "options": [
+      {
+        "name": "Option 1",
+        "amount": 5156
+      },
+      {
+        "name": "Option 2",
+        "amount": 4498
+      },
+      {
+        "name": "Option 3",
+        "amount": 1561
+      }
+    ]
+  }
+]

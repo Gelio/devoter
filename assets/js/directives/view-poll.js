@@ -1,9 +1,7 @@
 var viewPollsModule = angular.module('viewPoll', ['ui.router']);
 
-viewPollsModule.controller('viewPollCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
-    console.log($stateParams);
-    // TODO: fetch poll from external API
-    $poll = new Poll(
+viewPollsModule.controller('viewPollCtrl', ['$scope', '$stateParams', 'PollParser', function($scope, $stateParams, PollParser) {
+    /*$scope.poll = new Poll(
         $stateParams.pollID,
         "Poll name",
         [
@@ -11,8 +9,16 @@ viewPollsModule.controller('viewPollCtrl', ['$scope', '$stateParams', function($
             new Option('B', 20),
             new Option('C', 10)
         ],
-        'today'
-    );
+        new Date()
+    );*/
+    $scope.poll = null;
+
+    PollParser.fetchPolls('php/example-data.json', function(poll) {
+        $scope.poll = poll[0];  // TODO: after adding proper API remove this index
+    }, function(response) {
+        // Error already printed
+        // TODO: proper error handling and message display
+    }, {id: $stateParams.pollID})  // TODO: add another parameter set to true, so that it uses POST
 }]);
 
 viewPollsModule.directive('viewPoll', function() {
