@@ -20,7 +20,9 @@
     "angular": "^1.4.7",
     "angular-chartjs": "0.0.5",
     "angular-ui-router": "^0.2.15",
-    "chart.js": "^1.0.2"
+    "chart.js": "^1.0.2",
+    "datetimepicker": "^0.1.15",
+    "jquery": "^2.1.4"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

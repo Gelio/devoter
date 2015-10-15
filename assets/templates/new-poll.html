@@ -6,34 +6,57 @@ TODO: add a form to create a poll
     4. Private (bool)
  -->
 <div class="container">
-    <h1>New poll</h1>
+    <h1 class="text-center">New poll</h1>
 
     <div class="col-md-8 col-md-offset-2">
+        <!-- TODO: include error messages based on which input is invalid -->
+
         <form name="newPollForm">
-            <label>
-                <h2>Name</h2>
-                <input type="text" name="name" ng-minlength="10" ng-maxlength="100" required
-                       placeholder="{{examplePoll.name}}" class="form-control"
-                       ng-model="newPoll.name">
-            </label>
+            <fieldset class="form-group">
+                <label>
+                    <h2>Name</h2>
+                    <input type="text" name="name" ng-minlength="10" ng-maxlength="100" required
+                           placeholder="{{examplePoll.name}}" class="form-control"
+                           ng-model="newPoll.name">
+                </label>
+            </fieldset>
 
-            <ul>
-                <li ng-repeat="option in newPoll.options">
-                    <label>
-                        <input type="text" name="option{{$index}}" ng-maxlength="100" required
-                               placeholder="{{examplePoll.options[$index].name}}"
-                               class="form-control" ng-model="newPoll.options[$index].name">
-                    </label>
-                </li>
-            </ul>
-            <!-- TODO: add an option removal button -->
+            <div>
+                <h2>Options</h2>
+                <ul>
+                    <li ng-repeat="option in newPoll.options">
+                        <label>
+                            <input type="text" name="option{{$index}}" ng-maxlength="100" required
+                                   placeholder="{{examplePoll.options[$index].name}}"
+                                   class="form-control" ng-model="newPoll.options[$index].name">
+                        </label>
+                        <button type="button" ng-click="removeOption($index)">-</button>
+                        <!-- TODO: improve the visuals of the delete button -->
+                    </li>
+                </ul>
+                <button type="button" ng-click="addNewOption()">Add new option</button>
+            </div>
 
-            <button type="button" ng-click="addNewOption()">Add new option</button>
+            <div class="m-t">
+                <label>
+                    <input type="checkbox" name="private" class="checkbox-inline" ng-model="newPoll.private">
+                    Private
+                </label>
+            </div>
 
+            <div>
+                Expiry date
+                <input type="text" data-field="datetime" readonly ng-model="newPoll.expDate">
 
-            <!-- TODO: checkbox for privacy and an expiry date picker -->
+                <div id="dtBox"></div>
+                <script>
+                    $("#dtBox").DateTimePicker();
+                </script>
+            </div>
 
-            <input type="submit" value="Create" ng-disabled="newPollForm.$invalid">
+            <div class="m-t-md">
+                <input type="submit" value="Create" ng-disabled="newPollForm.$invalid">
+            </div>
         </form>
     </div>
 </div>
