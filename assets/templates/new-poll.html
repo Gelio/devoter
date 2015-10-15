@@ -34,7 +34,8 @@ TODO: add a form to create a poll
                         <!-- TODO: improve the visuals of the delete button -->
                     </li>
                 </ul>
-                <button type="button" ng-click="addNewOption()" class="form-control">Add new option</button>
+                <button type="button" ng-click="addNewOption()" ng-disabled="newPoll.options.length >= 10"
+                        class="form-control btn btn-secondary">Add new option</button>
             </div>
 
             <div class="m-t">
@@ -58,8 +59,8 @@ TODO: add a form to create a poll
             </div>
 
             <div class="m-t-md">
-                <input type="submit" value="Create" ng-disabled="newPollForm.$invalid"
-                        class="form-control">
+                <input type="submit" value="Create" class="form-control"
+                       ng-disabled="newPollForm.$invalid || newPll.options.length < 2">
             </div>
         </form>
     </div>

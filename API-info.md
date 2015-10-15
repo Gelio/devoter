@@ -2,7 +2,7 @@
 Input (POST):
 
         name (string, length: 5 - 100 characters)
-        options ()
+        options (array of strings - names, max 10 options)
         private (boolean)
         expDate (UNIX timestamp)
 
