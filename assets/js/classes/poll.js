@@ -12,6 +12,8 @@
  */
 
 // TODO: add param to indicate whether the user has already voted or not
+// TODO: refactor this so that it takes in an object as a parameter to allow for default or limited options
+// TODO: then also change it in all functions (probably only in the PollParser factory)
 var Poll = function(id, name, options, expDate, totalVotes) {
     this.id = id;
     this.name = name;

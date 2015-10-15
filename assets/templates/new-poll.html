@@ -5,3 +5,32 @@ TODO: add a form to create a poll
     3. Expiration date
     4. Private (bool)
  -->
+<div class="container">
+    <h1>New poll</h1>
+
+    <div class="col-md-8 col-md-offset-2">
+        <form name="newPollForm">
+            <label>
+                <h2>Name</h2>
+                <input type="text" name="name" ng-minlength="10" ng-maxlength="100" required
+                       placeholder="{{examplePoll.name}}" class="form-control"
+                       ng-model="newPoll.name">
+            </label>
+
+            <ul>
+                <li ng-repeat="option in newPoll.options">
+                    <label>
+                        <input type="text" name="option{{$index}}" ng-maxlength="100" required
+                               placeholder="{{examplePoll.options[$index].name}}"
+                               class="form-control" ng-model="newPoll.options[$index].name">
+                    </label>
+                </li>
+            </ul>
+            <!-- TODO: add an option removal button -->
+
+            <button type="button" ng-click="addNewOption()">Add new option</button>
+
+            <input type="submit" value="Create" ng-disabled="newPollForm.$invalid">
+        </form>
+    </div>
+</div>
