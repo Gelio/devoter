@@ -18,7 +18,7 @@ viewPollsModule.controller('viewPollCtrl', ['$scope', '$stateParams', 'PollParse
     }, function(response) {
         // Error already printed
         // TODO: proper error handling and message display
-    }, {id: $stateParams.pollID})  // TODO: add another parameter set to true, so that it uses POST
+    }, {id: $stateParams.pollID});  // TODO: add another parameter set to true, so that it uses POST
 }]);
 
 viewPollsModule.directive('viewPoll', function() {

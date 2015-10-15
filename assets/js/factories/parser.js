@@ -39,6 +39,8 @@ parserModule.factory('PollParser', ['$http', function($http) {
                 name: pollData.name,
                 options: optionsList,
                 expDate: expDate,
+                private: pollData.private || false,
+                hasVoted: pollData.hasVoted || false,
                 totalVotes: (pollData.totalVotes || undefined)
             });
         }

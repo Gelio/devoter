@@ -7,11 +7,15 @@
 
 
     <div class="main-popular-polls">
-        <h2>Hot polls</h2>
-        <div class="row">
+        <h2>Popular polls</h2>
+        <div class="row" ng-if="topPolls">
             <div class="col-lg-4 main-single-poll" ng-repeat="poll in topPolls">
                 <poll data="poll"></poll>
             </div>
+        </div>
+
+        <div class="row" ng-if="!topPolls">
+            Retrieving data... Please wait
         </div>
     </div>
 </div>

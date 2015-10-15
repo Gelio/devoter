@@ -1,5 +1,5 @@
 /**
- * A class fo unifying how polls are represented across the app
+ * A class for unifying how polls are represented across the app
  *
  * @class Poll
  * @param {Object} params       Used in order to allow for optional parameters

@@ -6,14 +6,14 @@
             <thead class="thead-default">
                 <tr>
                     <th>Name</th>
-                    <th>Expiration date</th>
+                    <th>Expiry date</th>
                     <th>Total votes</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="poll in polls" class="table-row-link" ui-sref="view-poll({pollID: poll.id})">
                     <td>{{poll.name}}</td>
-                    <td>{{poll.expDate}}</td>
+                    <td>{{poll.expDate | date: 'dd-MM-yyyy HH:mm'}}</td>
                     <td>{{poll.totalVotes}}</td>
                 </tr>
             </tbody>

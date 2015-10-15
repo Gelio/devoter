@@ -1,7 +1,7 @@
-var mainPageModule = angular.module('mainPage', []);
+var mainPageModule = angular.module('mainPage', ['parserModule']);
 
-mainPageModule.controller('mainPageCtrl', ['$scope', function($scope) {
-    $scope.topPolls = [
+mainPageModule.controller('mainPageCtrl', ['$scope', 'PollParser', function($scope, PollParser) {
+    /*$scope.topPolls = [
         new Poll(0, 'Poll 1', [
                 new Option('A', 10),
                 new Option('B', 10),
@@ -20,7 +20,15 @@ mainPageModule.controller('mainPageCtrl', ['$scope', function($scope) {
                 new Option('C', 156)
             ],
             new Date())
-    ];
+    ];*/
+    $scope.topPolls = null;
+
+    PollParser.fetchPolls('php/example-data.json', function(data) {
+        $scope.topPolls = data;
+    }, function(response) {
+        // Error already logged
+        // TODO: add proper error display
+    }, {limitTo: 3}, false);   // TODO: Set the last parameter to true
 }]);
 
 mainPageModule.directive('main', function() {
