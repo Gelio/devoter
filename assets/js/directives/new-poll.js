@@ -3,7 +3,9 @@ var newPollModule = angular.module('newPoll', []);
 newPollModule.controller('newPollCtrl', ['$scope', function($scope) {
     $scope.newPoll = {
         name: '',
-        options: []
+        options: [],
+        private: false,
+        expDate: new Date()
     };
 
     $scope.examplePoll = new Poll(0, "Example name", [
@@ -13,7 +15,9 @@ newPollModule.controller('newPollCtrl', ['$scope', function($scope) {
 
     $scope.addNewOption = function() {
         $scope.newPoll.options.push(new Option());
-    }
+    };
+
+    // TODO: when sending a request convert expDate to UNIX timestamp
 }]);
 
 newPollModule.directive('newPoll', function() {
