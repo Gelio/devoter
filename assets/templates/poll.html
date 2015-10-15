@@ -1,15 +1,15 @@
 <div ng-show="!data">Poll couldn't be retrieved. We're working on fixing this issue.</div>
 
 <div ng-show="data">
-    <h3>{{data.name}}</h3>
+    <h3><a ui-sref="view-poll({pollID:data.id})">{{data.name}}</a></h3>
 
     <!-- TODO: add parameter to limit it to around col-md-6 -->
-    <div class="text-center">
+    <div class="text-center" ng-class="{'col-xs-6 col-xs-offset-3': fullscreen}">
         <cjs-pie dataset="dataset" class="poll-chart"></cjs-pie>
     </div>
 
     <!-- TODO: param to show options as links -->
-    <div>
+    <div class="col-xs-12">
         Options:
         <ul>
             <li ng-repeat="option in data.options">

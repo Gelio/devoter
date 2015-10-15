@@ -11,6 +11,11 @@ pollModule.controller('pollCtrl', ['$scope', function($scope) {
             };
         });
 
+        // TODO: install angular-chart.js and configure it
+        // http://jtblin.github.io/angular-chart.js/#getting_started
+        // catch the 'create' event and resize it like there
+        // https://github.com/jtblin/angular-chart.js/issues/74
+        
         $scope.dataset.forEach(function(dataset, index) {
             dataset.color = chartColors[index].color;
             dataset.highlight = chartColors[index].highlight;
@@ -28,7 +33,8 @@ pollModule.directive('poll', function() {
         controller: 'pollCtrl',
         templateUrl: 'assets/templates/poll.html',
         scope: {
-            data: '=data'
+            data: '=',
+            fullscreen: '='
         }
     };
 });
