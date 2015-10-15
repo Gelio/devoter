@@ -9,8 +9,8 @@ parserModule.factory('PollParser', ['$http', function($http) {
      * @returns {Option}
      */
     parserFactory.parseOption = function(optionData) {
-        if(optionData && optionData.name && optionData.amount)
-            return new Option(optionData.name, optionData.amount);
+        if(optionData && optionData.name)
+            return new Option({name: optionData.name, amount: optionData.amount});
         else {
             console.error("error while parsing data, can't find amount or name of the option", optionData);
             throw "Option data missing";
@@ -34,7 +34,13 @@ parserModule.factory('PollParser', ['$http', function($http) {
             var expDate = new Date();
             expDate.setTime(pollData.expDate*1000);  // number in miliseconds
 
-            return new Poll(pollData.id, pollData.name, optionsList, expDate, (pollData.totalVotes || undefined));
+            return new Poll({
+                id: pollData.id,
+                name: pollData.name,
+                options: optionsList,
+                expDate: expDate,
+                totalVotes: (pollData.totalVotes || undefined)
+            });
         }
         else {
             console.error("error while parsing data, missing poll data", pollData);

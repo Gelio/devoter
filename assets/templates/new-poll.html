@@ -13,9 +13,9 @@ TODO: add a form to create a poll
 
         <form name="newPollForm">
             <fieldset class="form-group">
-                <label>
+                <label class="poll-name-input">
                     <h2>Name</h2>
-                    <input type="text" name="name" ng-minlength="10" ng-maxlength="100" required
+                    <input type="text" name="name" ng-minlength="5" ng-maxlength="100" required
                            placeholder="{{examplePoll.name}}" class="form-control"
                            ng-model="newPoll.name">
                 </label>
@@ -34,7 +34,7 @@ TODO: add a form to create a poll
                         <!-- TODO: improve the visuals of the delete button -->
                     </li>
                 </ul>
-                <button type="button" ng-click="addNewOption()">Add new option</button>
+                <button type="button" ng-click="addNewOption()" class="form-control">Add new option</button>
             </div>
 
             <div class="m-t">
@@ -46,16 +46,20 @@ TODO: add a form to create a poll
 
             <div>
                 Expiry date
-                <input type="text" data-field="datetime" readonly ng-model="newPoll.expDate">
+                <input type="text" data-field="datetime" readonly
+                       ng-model="newPoll.expDate" class="form-control date-picker">
 
                 <div id="dtBox"></div>
                 <script>
-                    $("#dtBox").DateTimePicker();
+                    var dateTimePicker = $("#dtBox").DateTimePicker();
+                    //setDateTimeStringInInputField(new Date());
+                    console.log($.DateTimePicker);
                 </script>
             </div>
 
             <div class="m-t-md">
-                <input type="submit" value="Create" ng-disabled="newPollForm.$invalid">
+                <input type="submit" value="Create" ng-disabled="newPollForm.$invalid"
+                        class="form-control">
             </div>
         </form>
     </div>

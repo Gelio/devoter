@@ -36,3 +36,9 @@ body {
           transition: background-color 120ms ease-in-out; }
   .table-row-link:hover {
     background-color: #cdcdcd; }
+
+.date-picker {
+  cursor: pointer; }
+
+.poll-name-input {
+  width: 100%; }

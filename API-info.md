@@ -1,7 +1,7 @@
 # Adding a new poll #
 Input (POST):
 
-        name (string, length: 10 - 100 characters)
+        name (string, length: 5 - 100 characters)
         options ()
         private (boolean)
         expDate (UNIX timestamp)
@@ -48,6 +48,7 @@ Output (JSON):
                 name (number)
                 amount (number, only when the user has already voted on that poll, otherwise 0)
             expDate (UNIX timestamp)
+            hasVoted (boolean)
 
 For the first 3 most popular ones (in the whole database) include amounts regardless of whether the user has already voted or not (this is done in order to display them on the main page in a chart).
 
@@ -68,3 +69,4 @@ Output (JSON):
             amount (number, only when the user has already voted on that poll, otherwise 0)
         expDate (UNIX timestamp)
         private (boolean)
+        hasVoted (boolean)
