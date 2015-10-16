@@ -3,9 +3,16 @@
 <div ng-show="data">
     <h3><a ui-sref="view-poll({pollID:data.id})">{{data.name}}</a></h3>
 
-    <!-- TODO: add parameter to limit it to around col-md-6 -->
-    <div class="text-center" ng-class="{'col-xs-6 col-xs-offset-3': fullscreen}">
-        <cjs-pie dataset="dataset" class="poll-chart"></cjs-pie>
+    <!-- This split is done because Chart.js would size differently is a style was applied
+        via ng-class -->
+    <div class="text-center col-xs-6 col-xs-offset-3" ng-show="fullscreen">
+        <canvas class="chart chart-pie"
+                chart-data="optionsData" chart-labels="optionsLabels"></canvas>
+    </div>
+
+    <div class="text-center" ng-show="!fullscreen">
+        <canvas class="chart chart-pie"
+                chart-data="optionsData" chart-labels="optionsLabels"></canvas>
     </div>
 
     <!-- TODO: param to show options as links -->

@@ -1,4 +1,4 @@
-var devoter = angular.module('devoter', ['ui.router', 'chartjs', 'mainPage', 'newPoll', 'popularPolls', 'viewPoll', 'polls']);
+var devoter = angular.module('devoter', ['ui.router', 'chartjs', 'chart.js', 'mainPage', 'newPoll', 'popularPolls', 'viewPoll', 'polls']);
 
 devoter.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
@@ -39,3 +39,5 @@ angular.element(document).ready(function() {
 
 // Make charts responsive
 Chart.defaults.global.responsive = true;
+Chart.defaults.global.animation = false;
+console.log(Chart.defaults.global);

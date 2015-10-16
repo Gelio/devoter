@@ -1,27 +1,28 @@
 var pollModule = angular.module('polls', ['chartjs']);
 
-pollModule.controller('pollCtrl', ['$scope', function($scope) {
+pollModule.controller('pollCtrl', ['$scope', '$timeout', function($scope, $timeout) {
     if(!$scope.data)
         console.error('Cannot retrieve information.');
     else {
-        $scope.dataset = $scope.data.options.map(function(option) {
+        /*$scope.dataset = $scope.data.options.map(function(option) {
             return {
                 value: option.amount,
                 label: option.name
             };
-        });
+        });*/
 
-        // TODO: install angular-chart.js and configure it
-        // http://jtblin.github.io/angular-chart.js/#getting_started
-        // catch the 'create' event and resize it like there
-        // https://github.com/jtblin/angular-chart.js/issues/74
+        // angular-chart.js Chart data
+        $scope.optionsData = $scope.data.options.map(function(option) {
+            return option.amount;
+        });
+        $scope.optionsLabels = $scope.data.options.map(function(option) {
+            return option.name;
+        });
         
-        $scope.dataset.forEach(function(dataset, index) {
+        /*$scope.dataset.forEach(function(dataset, index) {
             dataset.color = chartColors[index].color;
             dataset.highlight = chartColors[index].highlight;
-        });
-
-        console.log($scope.dataset);
+        });*/
     }
 
 }]);
