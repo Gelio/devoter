@@ -30,10 +30,10 @@
             </li>
         </ul>
 
-        <p class="text-muted">
-            <span ng-show="data.hasVoted">Already voted</span>
-            <span ng-show="!data.hasVoted">Not voted</span>
-        </p>
+        <div class="text-muted">
+            <p class="text-muted" ng-show="data.hasVoted">Already voted</p>
+            <p class="text-info" ng-show="!data.hasVoted">Not voted yet</p>
+        </div>
 
         <p ng-show="data.expDate && fullscreen">Poll expires: {{data.expDate | date:'dd-MM-yyyy HH:mm'}}</p>
     </div>
