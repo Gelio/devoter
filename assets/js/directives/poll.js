@@ -13,11 +13,19 @@ pollModule.controller('pollCtrl', ['$scope', '$http', function($scope, $http) {
         });
 
         $scope.addVote = function(index) {
-            // TODO: send data to script, change poll's optionsData, update 'hasVoted', display msg
             if($scope.data.hasVoted)
                 return;
 
-            //$http.post()
+            $scope.data.hasVoted = true;
+
+            $http.post("php/glosuj.php", {id: $scope.data.id, optionID: index})
+                .then(function(response) {
+                    console.log("vote added", response);
+                    $scope.optionsData[index] += 1;
+                    // TODO: display message
+                }, function(response) {
+                   console.error("error while voting", response);
+                });
         };
     }
 
