@@ -35,7 +35,7 @@ Output (JSON):
 # Showing polls #
 Input (GET):
 
-        startFrom (number, start listing from the nth most popular poll)
+        startFrom (number, start listing from the nth most popular poll, indexed from 0)
         limitTo (number, limit to n most popular polls)
 
 Output (JSON):

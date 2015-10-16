@@ -1,6 +1,6 @@
 var newPollModule = angular.module('newPoll', []);
 
-newPollModule.controller('newPollCtrl', ['$scope', function($scope) {
+newPollModule.controller('newPollCtrl', ['$scope', "$http", function($scope, $http) {
     var currDate = new Date();
     $scope.newPoll = new Poll({
         options: [new Option({}), new Option({})],
@@ -25,6 +25,9 @@ newPollModule.controller('newPollCtrl', ['$scope', function($scope) {
     };
 
     // TODO: when sending a request convert expDate to UNIX timestamp
+    $scope.addNewPost = function() {
+
+    };
 }]);
 
 newPollModule.directive('newPoll', function() {

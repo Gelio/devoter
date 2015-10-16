@@ -1,16 +1,9 @@
 var pollModule = angular.module('polls', ['chartjs']);
 
-pollModule.controller('pollCtrl', ['$scope', '$timeout', function($scope, $timeout) {
+pollModule.controller('pollCtrl', ['$scope', '$http', function($scope, $http) {
     if(!$scope.data)
         console.error('Cannot retrieve information.');
     else {
-        /*$scope.dataset = $scope.data.options.map(function(option) {
-            return {
-                value: option.amount,
-                label: option.name
-            };
-        });*/
-
         // angular-chart.js Chart data
         $scope.optionsData = $scope.data.options.map(function(option) {
             return option.amount;
@@ -18,11 +11,14 @@ pollModule.controller('pollCtrl', ['$scope', '$timeout', function($scope, $timeo
         $scope.optionsLabels = $scope.data.options.map(function(option) {
             return option.name;
         });
-        
-        /*$scope.dataset.forEach(function(dataset, index) {
-            dataset.color = chartColors[index].color;
-            dataset.highlight = chartColors[index].highlight;
-        });*/
+
+        $scope.addVote = function(index) {
+            // TODO: send data to script, change poll's optionsData, update 'hasVoted', display msg
+            if($scope.data.hasVoted)
+                return;
+
+            //$http.post()
+        };
     }
 
 }]);
