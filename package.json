@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Gelio/devoter#readme",
   "dependencies": {
     "angular": "^1.4.7",
+    "angular-chart.js": "^0.8.4",
     "angular-chartjs": "0.0.5",
     "angular-ui-router": "^0.2.15",
     "chart.js": "^1.0.2",
