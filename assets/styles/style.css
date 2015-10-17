@@ -15,15 +15,19 @@ body {
   padding: 2rem; }
 
 .main-single-poll {
-  border-bottom: solid 1px;
-  margin-bottom: 1rem; }
-  .main-single-poll:last-of-type {
-    border-bottom: 0;
-    margin-bottom: 0; }
+  border-top: solid 1px;
+  margin-bottom: 1rem;
+  padding-top: 1rem; }
+  .main-single-poll:first-of-type {
+    border-top: 0;
+    padding-top: 0; }
   @media (min-width: 62em) {
     .main-single-poll {
-      border-bottom: 0;
-      border-right: solid 1px; }
+      border-right: solid 1px;
+      border-top: 0;
+      margin-bottom: 0;
+      padding-left: 1rem;
+      padding-top: 0; }
       .main-single-poll:last-of-type {
         border-right: 0; } }
 
@@ -43,3 +47,6 @@ body {
 
 .poll-name-input {
   width: 100%; }
+
+.poll-options > li > a {
+  cursor: pointer; }

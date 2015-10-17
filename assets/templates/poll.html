@@ -5,7 +5,7 @@
 
     <!-- This split is done because Chart.js would size differently is a style was applied
         via ng-class -->
-    <div class="text-center col-lg-6 col-lg-offset-3" ng-show="fullscreen">
+    <div class="text-center col-xs-12 col-lg-6 col-lg-offset-3" ng-show="fullscreen">
         <canvas class="chart chart-pie"
                 chart-data="optionsData" chart-labels="optionsLabels"></canvas>
     </div>
@@ -18,7 +18,7 @@
     <!-- TODO: param to show options as links -->
     <div class="col-xs-12">
         Options:
-        <ul>
+        <ul class="poll-options">
             <li ng-repeat="option in data.options" ng-show="!data.hasVoted">
                 <a ng-click="addVote($index)">
                     {{option.name}} - {{option.amount}} ({{ (option.amount / data.totalVotes * 100) | percent}}%)

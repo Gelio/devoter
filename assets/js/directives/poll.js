@@ -35,7 +35,7 @@ pollModule.controller('pollCtrl', ['$scope', '$http', function($scope, $http) {
 
 pollModule.directive('poll', function() {
     return {
-        restrict: 'E',
+        restrict: 'EA',
         controller: 'pollCtrl',
         templateUrl: 'assets/templates/poll.html',
         scope: {
