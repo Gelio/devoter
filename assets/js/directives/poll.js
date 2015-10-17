@@ -1,4 +1,4 @@
-var pollModule = angular.module('polls', ['chartjs']);
+var pollModule = angular.module('polls', ['chart.js']);
 
 pollModule.controller('pollCtrl', ['$scope', '$http', function($scope, $http) {
     if(!$scope.data)
