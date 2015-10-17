@@ -37,7 +37,5 @@ angular.element(document).ready(function() {
     angular.bootstrap(document, ['devoter']);
 });
 
-// Make charts responsive
 //Chart.defaults.global.responsive = true;
 //Chart.defaults.global.animation = false;
-console.log(Chart.defaults.global);

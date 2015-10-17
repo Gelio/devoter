@@ -1,10 +1,3 @@
-<!--
-TODO: add a form to create a poll
-    1. Name
-    2. Options
-    3. Expiration date
-    4. Private (bool)
- -->
 <div class="container">
     <h1 class="text-center">New poll</h1>
 
@@ -52,15 +45,16 @@ TODO: add a form to create a poll
 
                 <div id="dtBox"></div>
                 <script>
-                    var dateTimePicker = $("#dtBox").DateTimePicker();
-                    //setDateTimeStringInInputField(new Date());
-                    console.log($.DateTimePicker);
+                    var currDate = new Date();
+                    var dateTimePicker = $("#dtBox").DateTimePicker({
+                        minDateTime: formatToDateTimePicker(new Date(currDate.getTime() + minPollLength*1000))
+                    });
                 </script>
             </div>
 
             <div class="m-t-md">
-                <input type="submit" value="Create" class="form-control"
-                       ng-disabled="newPollForm.$invalid || newPll.options.length < 2">
+                <input type="submit" value="Create" class="form-control" ng-click="addNewPoll()"
+                       ng-disabled="newPollForm.$invalid || newPoll.options.length < 2">
             </div>
         </form>
     </div>
