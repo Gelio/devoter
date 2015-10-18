@@ -13,11 +13,15 @@ if (filter_var($ip, FILTER_VALIDATE_IP))
 {
 	try
    {
-		$pdo = new PDO("mysql:host=$database["ip"] ;dbname=$database["db"] ;port=$database["port"];charset=utf8, $database["user"] , $database["password"] ", array(PDO::ATTR_EMULATE_PREPARES => false,PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-		
-		$opcja =$_POST['optionID'];
-		$ankieta=$_POST['id'];
-		$stmt= $pdo -> query("SELECT * FROM ip_voted WHERE poll_id=$ankieta AND IP=$ip");
+		$pdo = new PDO("mysql:host=".$database['ip'].";
+	  dbname=".$database['db']." ;port=".$database['port'].";
+	  charset=utf8,".$database['user'].",".$database['password'] ,
+	  array(PDO::ATTR_EMULATE_PREPARES => false,
+	  PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+  		
+		$option =$_POST['optionID'];
+		$poll=$_POST['id'];
+		$stmt= $pdo -> query("SELECT * FROM ip_voted WHERE poll_id=$poll AND IP=$ip");
 		$ilosc=$stmt->rowCount();
 		
 		$stmt= $pdo -> query("SELECT * FROM ip_voted");
@@ -25,9 +29,9 @@ if (filter_var($ip, FILTER_VALIDATE_IP))
 		
 		if(!$ilosc)
 		{
-			$stmt= $pdo -> exec("insert into ip_voted values($idv,$ankieta,$ip)");
-			$stmt= $pdo -> exec("update polls set total_votes=total_votes+1 where id=$ankieta");
-			$stmt =$pdo -> exec("update options set answers=answers+1 where id=$opcja;")
+			$stmt= $pdo -> exec("insert into ip_voted values($idv,$poll,$ip)");
+			$stmt= $pdo -> exec("update polls set total_votes=total_votes+1 where id=$poll");
+			$stmt =$pdo -> exec("update options set answers=answers+1 where id=$option;")
 			$idv++;
 		}
 		else 
@@ -37,7 +41,7 @@ if (filter_var($ip, FILTER_VALIDATE_IP))
 	}
 	catch(PDOException $e)
    {
-      echo 'Połączenie nie mogło zostać utworzone: ' . $e->getMessage();
+      echo 'Connection could not be created: ' . $e->getMessage();
 	  echo json_encode($e);
    }
 
