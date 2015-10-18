@@ -68,10 +68,6 @@
 		$stmt -> closeCursor();
 		
 		echo json_encode($wynik);
-		echo '</br></br>';
-		
-		$wynik = json_encode($wynik);
-		var_dump(json_decode($wynik));
 		
 	}
 	
