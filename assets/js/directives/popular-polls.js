@@ -1,14 +1,14 @@
 var popularPollsModule = angular.module('popularPolls', ['parserModule']);
 
 popularPollsModule.controller('popularPollsCtrl', ['$scope', 'PollParser', function($scope, PollParser) {
-    // TODO: add a proper URL
+
     $scope.polls = [];
-    PollParser.fetchPolls('php/example-data.json', function(data) {
+    PollParser.fetchPolls('php/all-polls.php', function(data) {
         $scope.polls = data;
     }, function(response) {
         // Error already printed
         // TODO: show error message
-    }, {startFrom: 0, limitTo: 20}, false);
+    }, {startFrom: 1, limitTo: 20}, false);
 }]);
 
 popularPollsModule.directive('popularPolls', function() {
