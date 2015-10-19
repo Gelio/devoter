@@ -20,15 +20,14 @@ try
 	$stmt=$pdo->query('SELECT id FROM polls;') ;
 	$id= $stmt->rowCount()+1;
 	
-	$stmt = $pdo->prepare('INSERT INTO `polls` (`id`,  `name`, `total_votes`,`private`,`expire_date`)	VALUES(
-			:id,
+	$stmt = $pdo->prepare('INSERT INTO `polls` (  `name`, `total_votes`,`private`,`expire_date`)	VALUES(
 			:name,
 			:total_votes,
 			:private,
 			:expire_date)');
 				 
 			
-		$stmt -> bindValue(':id', $id, PDO::PARAM_INT); 
+	
 		$stmt -> bindValue(':name', $name, PDO::PARAM_STR);
 		$stmt -> bindValue(':total_votes',0 , PDO::PARAM_INT);
 		$stmt -> bindValue(':private', $private, PDO::PARAM_INT);
@@ -36,25 +35,18 @@ try
 		$stmt -> execute();
 
 	//dodanie opcji
-	$stmt=$pdo->query('SELECT id FROM options');
-	$oid= $stmt->rowCount()+1;
-
 	$i=0;
-	
 	foreach($option_number as $current=>$opname)
 	{
-		$stmt = $pdo -> prepare('INSERT INTO `options` (`id`,  `poll_id`, `name`,`amount`)	VALUES(
-				:id,
+		$stmt = $pdo -> prepare('INSERT INTO `options` (  `poll_id`, `name`,`amount`)	VALUES(
 				:poll_id,
 				:name,
 				:amount)');
-			$stmt -> bindValue(':id', $oid, PDO::PARAM_INT); 
 			$stmt -> bindValue(':poll_id', $id, PDO::PARAM_INT);
 			$stmt -> bindValue(':name', $option_number[$i]["name"] , PDO::PARAM_STR);
 			$stmt -> bindValue(':amount', 0, PDO::PARAM_INT);
 			$stmt -> execute();
 		$i++;
-		$oid++;
 	
 	}
 
