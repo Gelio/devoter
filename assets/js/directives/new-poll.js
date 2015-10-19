@@ -44,7 +44,6 @@ newPollModule.controller('newPollCtrl', ['$scope', "$http", function($scope, $ht
         $scope.newPoll.options.splice(index, 1);
     };
 
-    // TODO: when sending a request convert expDate to UNIX timestamp
     $scope.addNewPoll = function() {
         if($scope.newPollForm.$invalid)
             return;

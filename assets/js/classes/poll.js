@@ -7,7 +7,6 @@
  * @constructor
  */
 
-// TODO: then also change it in all functions (probably only in the PollParser factory)
 var Poll = function(params) {
     if(!params)
         params = {};

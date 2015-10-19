@@ -1,4 +1,5 @@
 <?php
+// TODO: set the limit to be passed in by $_GET parameter (limitTo) as suggested in the API-info
 	$ip = $_SERVER['REMOTE_ADDR'];
 	include "config.inc.php";
 	try
