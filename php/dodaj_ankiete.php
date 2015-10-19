@@ -16,10 +16,10 @@ try
 	  array(PDO::ATTR_EMULATE_PREPARES => false,
 	  PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 	 
-
+	//dodanie ankiety
 	$stmt=$pdo->query('SELECT id FROM polls;') ;
 	$id= $stmt->rowCount()+1;
-
+	
 	$stmt = $pdo->prepare('INSERT INTO `polls` (`id`,  `name`, `total_votes`,`private`,`expire_date`)	VALUES(
 			:id,
 			:name,
@@ -35,11 +35,12 @@ try
 		$stmt -> bindValue(':expire_date', $expire_date, PDO::PARAM_INT);
 		$stmt -> execute();
 
-	
+	//dodanie opcji
 	$stmt=$pdo->query('SELECT id FROM options');
 	$oid= $stmt->rowCount()+1;
 
 	$i=0;
+	
 	foreach($option_number as $current=>$opname)
 	{
 		$stmt = $pdo -> prepare('INSERT INTO `options` (`id`,  `poll_id`, `name`,`amount`)	VALUES(
