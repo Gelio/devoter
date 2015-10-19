@@ -14,8 +14,8 @@ viewPollsModule.controller('viewPollCtrl', ['$scope', '$stateParams', 'PollParse
     $scope.poll = null;
 
     // TODO: proper URL 'php/single-poll.php'
-    PollParser.fetchPolls('php/example-data.json', function(poll) {
-        $scope.poll = poll[$stateParams.pollID];  // TODO: after adding proper API remove this index
+    PollParser.fetchPolls('php/single-poll.php', function(poll) {
+        $scope.poll = poll;  // TODO: after adding proper API remove this index
     }, function(response) {
         // Error already printed
         // TODO: proper error handling and message display
