@@ -1,10 +1,9 @@
 var popularPollsModule = angular.module('popularPolls', ['parserModule']);
 
 popularPollsModule.controller('popularPollsCtrl', ['$scope', 'PollParser', function($scope, PollParser) {
-
-    // TODO: add a proper URL 'php/all-polls.php'
+    
     $scope.polls = [];
-    PollParser.fetchPolls('php/example-data.json', function(data) {
+    PollParser.fetchPolls('php/all-polls.php', function(data) {
         $scope.polls = data;
     }, function(response) {
         // Error already printed
