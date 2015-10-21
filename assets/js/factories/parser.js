@@ -31,14 +31,15 @@ parserModule.factory('PollParser', ['$http', function($http) {
                 optionsList.push(parserFactory.parseOption(option));
             });
 
-            var expDate = new Date();
-            expDate.setTime(pollData.expDate*1000);  // number in miliseconds
+            var expDate = new Date(pollData.expDate);
+            //expDate.setTime(pollData.expDate*1000);  // number in miliseconds
+            console.log(expDate, pollData.expDate);
 
             return new Poll({
                 id: pollData.id,
                 name: pollData.name,
                 options: optionsList,
-                expDate: expDate,
+                expDate: expDate.getTime(),
                 private: pollData.private || false,
                 hasVoted: pollData.hasVoted || false,
                 totalVotes: (pollData.totalVotes || undefined)

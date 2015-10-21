@@ -47,6 +47,7 @@
 					'hasVoted' => false
 				);
 			}
+			//$wynik[$row['id']]['expDate'] = new DateTime($wynik[$row['id']]['expDate'])->getTimestamp();
 			
 		}
 		$stmt -> closeCursor();
