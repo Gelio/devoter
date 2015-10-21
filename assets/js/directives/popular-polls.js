@@ -8,7 +8,7 @@ popularPollsModule.controller('popularPollsCtrl', ['$scope', 'PollParser', funct
     }, function(response) {
         // Error already printed
         // TODO: show error message
-    }, {startFrom: 1, limitTo: 20}, false);
+    }, {startFrom: 0, limitTo: 20}, false);
 }]);
 
 popularPollsModule.directive('popularPolls', function() {
