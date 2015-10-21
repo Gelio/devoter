@@ -64,20 +64,19 @@ if(strlen($name)>4 && strlen($name)<101 && !$pusty && $opcount>1 &&$opcount<11&&
 	
 		}
 
-		json_encode($id);
+		echo json_encode($id);
 	}
     
 	catch(PDOException $e)
 	{
-		$erro ='Connection could not be created: ' . $e->getMessage();
-		json_encode($e);
-		json_encode($erro);
+		$erro =1;
+		echo json_encode($erro);
 	}
 }
-elseif(strlen($name)<5) json_encode($erro='Poll title too short (less than five chars) !');
-elseif(strlen($name)>100) json_encode($erro='Poll title too long (more than a hundred chars)!');
-elseif($pusty) json_encode($erro='One of options is empty!');
-elseif($opcount<2) json_encode($erro='Not enough (less than two) options!');
-elseif($opcount>10) json_encode($erro='Too many (more than ten) options!');
-elseif($expire_date<=time()) json_encode($erro='Set expire date in the future!');
+elseif(strlen($name)<5) echo json_encode($erro=4);
+elseif(strlen($name)>100) echo json_encode($erro=4);
+elseif($pusty) echo json_encode($erro=5);
+elseif($opcount<2) echo json_encode($erro=5);
+elseif($opcount>10) echo json_encode($erro=5);
+elseif($expire_date<=time()) echo json_encode($erro=7);
 ?>
