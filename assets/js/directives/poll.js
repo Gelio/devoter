@@ -23,6 +23,7 @@ pollModule.controller('pollCtrl', ['$scope', '$http', function($scope, $http) {
                     console.log("vote added", response);
                     $scope.optionsData[index] = parseInt($scope.optionsData[index])+1;
                     $scope.data.options[index].amount = parseInt($scope.data.options[index].amount)+1;
+                    $scope.data.totalVotes += 1;
                     // TODO: display message
                 }, function(response) {
                    console.error("error while voting", response);
