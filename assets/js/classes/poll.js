@@ -14,6 +14,14 @@ var Poll = function(params) {
     this.id = params.id || 0;
     this.name = params.name || '';
     this.options = params.options || [];
+
+    if(this.options.length !== 0) {
+        this.options = this.options.map(function(option) {
+            option.amount = parseInt(option.amount);
+            return option;
+        });
+    }
+
     this.expDate = params.expDate || new Date();
 
     this.hasVoted = params.hasVoted;
