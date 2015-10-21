@@ -19,7 +19,7 @@
         Options:
         <ul class="poll-options">
             <li ng-repeat="option in data.options" ng-show="!data.hasVoted">
-                <a ng-click="addVote($index)">
+                <a ng-click="addVote($index, option.id)">
                     {{option.name}} - {{option.amount}} ({{ (option.amount / data.totalVotes * 100) | percent}}%)
                 </a>
             </li>

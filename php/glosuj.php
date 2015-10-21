@@ -2,6 +2,8 @@
 <?php
 	include 'config.inc.php';
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && empty($_POST)) $_POST = json_decode(file_get_contents('php://input'), true);
+
 	$ip = getenv('HTTP_CLIENT_IP')?:
 	getenv('HTTP_X_FORWARDED_FOR')?:
 	getenv('HTTP_X_FORWARDED')?:
@@ -31,7 +33,7 @@ if (filter_var($ip, FILTER_VALIDATE_IP))
 		{
 			$stmt= $pdo -> exec("insert into ip_voted values($idv,$poll,$ip)");
 			$stmt= $pdo -> exec("update polls set total_votes=total_votes+1 where id=$poll");
-			$stmt =$pdo -> exec("update options set answers=answers+1 where id=$option;")
+			$stmt =$pdo -> exec("update options set answers=answers+1 where id=$option;");
 			$idv++;
 		}
 		else 

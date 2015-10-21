@@ -10,7 +10,7 @@ parserModule.factory('PollParser', ['$http', function($http) {
      */
     parserFactory.parseOption = function(optionData) {
         if(optionData && optionData.name)
-            return new Option({name: optionData.name, amount: optionData.amount});
+            return new Option({id: optionData.id, name: optionData.name, amount: optionData.amount});
         else {
             console.error("error while parsing data, can't find amount or name of the option", optionData);
             throw "Option data missing";

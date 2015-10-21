@@ -10,6 +10,7 @@ var Option = function(params) {
     if(!params)
         params = {};
 
+    this.id = params.id || 0;
     this.name = params.name || "";
     this.amount = params.amount || 0;
 };

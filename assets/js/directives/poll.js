@@ -12,17 +12,17 @@ pollModule.controller('pollCtrl', ['$scope', '$http', function($scope, $http) {
             return option.name;
         });
 
-        $scope.addVote = function(index) {
+        $scope.addVote = function(index, trueOptionID) {
             if($scope.data.hasVoted)
                 return;
 
             $scope.data.hasVoted = true;
 
-            $http.post("php/glosuj.php", {id: $scope.data.id, optionID: index})
+            $http.post("php/glosuj.php", {id: $scope.data.id, optionID: trueOptionID})
                 .then(function(response) {
                     console.log("vote added", response);
-                    $scope.optionsData[index] += 1;
-                    $scope.data.options[index].amount += 1;
+                    $scope.optionsData[index] = parseInt($scope.optionsData[index])+1;
+                    $scope.data.options[index].amount = parseInt($scope.data.options[index].amount)+1;
                     // TODO: display message
                 }, function(response) {
                    console.error("error while voting", response);
