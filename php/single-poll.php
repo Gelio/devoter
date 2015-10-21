@@ -15,7 +15,7 @@
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$stmt = $pdo->query("SELECT id, name, total_votes, private, expire_date FROM polls WHERE id = $id");
 		$wynik = array();
-		$number = "SELECT COUNT(*) FROM ip_voted WHERE IP = $ip, poll_id = $id";
+		$number = "SELECT COUNT(*) FROM ip_voted WHERE IP = $ip AND poll_id = $id";
 		$row = $stmt -> fetch();
 		if($number !=0)
 		{
