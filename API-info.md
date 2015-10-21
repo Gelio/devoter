@@ -16,6 +16,8 @@ Output (JSON):
 
 
 
+
+
 # Voting #
 Input (POST):
 
@@ -28,6 +30,8 @@ Output (JSON):
         error (JSON object, when unsuccessful):
             code (number, list of error codes is at the bottom of this document)
             message (string, in English what's wrong)
+
+
 
 
 
@@ -54,6 +58,8 @@ For the first 3 most popular ones (in the whole database) include amounts regard
 
 
 
+
+
 # Show a single poll #
 Input (GET):
 
@@ -70,3 +76,44 @@ Output (JSON):
         expDate (UNIX timestamp)
         private (boolean)
         hasVoted (boolean)
+
+
+
+
+
+
+# Reporting errors #
+If any error occurs script should return with a specific JSON object instead of just echoing the result.
+
+
+## Error codes ##
+Following error codes should be used:
+
+        0 - no error (existance - unknown)
+        1 - connection to the database unavailable
+        2 - database does not exist
+        3 - SQL error (include it in the message of the JSON error)
+
+There are specific error codes for specific API tasks:
+
+
+### Adding a new poll ###
+
+        4 - name too short/too long/has unallowed characters
+        5 - options are in wrong format
+        6 - date in wrong format
+        7 - date relates to the past
+
+### Voting ###
+
+        8 - wrong poll's ID
+        9 - wrong option's ID
+
+### Showing polls ###
+
+        10 - GET parameters not given (either of them)
+
+### Show a single poll ###
+
+        11 - wrong poll's ID
+    
