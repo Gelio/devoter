@@ -11,7 +11,7 @@ $output = array();
 // Check ID
 if(!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     $output['error'] = array(
-        'code' => 10,
+        'code' => 11,
         'message' => "Wrong poll ID"
     );
     die(json_encode($output));

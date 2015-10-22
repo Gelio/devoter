@@ -9,15 +9,18 @@
 		$limitTo = 3;
 	else
 		$limitTo = $_GET['limitTo'];
-	
+
 	$ip = $_SERVER['REMOTE_ADDR'];
+	if(array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER)) {
+		$ip = array_pop(explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']));
+	}
 	include "config.inc.php";
 	try
 	{
 		$pdo = new PDO('mysql:host='.$database['ip'].';dbname='.$database['db'].';port='.$database['port'], 
 		$database['user'], $database['password'] );
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$stmt = $pdo->query("SELECT id, name, total_votes, private, expire_date FROM polls ORDER BY total_votes DESC 
+		$stmt = $pdo->query("SELECT id, name, total_votes, private, expire_date FROM polls WHERE private = 0 AND expire_date >= NOW() ORDER BY total_votes DESC
 		LIMIT $startFrom, $limitTo");
 		
 		$wynik = array();
