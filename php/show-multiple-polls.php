@@ -49,7 +49,10 @@ while(($pollData = $getQuery->fetch(PDO::FETCH_ASSOC)) !== false) {
     $pollOutput['id'] = $pollData['id'];
     $pollOutput['name'] = $pollData['name'];
     $pollOutput['private'] = $pollData['private'];
-    $pollOutput['expDate'] = $pollData['expire_date'];
+
+    $expDate = new DateTime($pollData['expire_date']);
+    $pollOutput['expDate'] = $expDate->getTimestamp();
+    //$pollOutput['expDate'] = $pollData['expire_date'];
     $pollOutput['options'] = array();
 
 

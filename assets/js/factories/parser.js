@@ -31,7 +31,7 @@ parserModule.factory('PollParser', ['$http', function($http) {
                 optionsList.push(parserFactory.parseOption(option));
             });
 
-            var expDate = new Date(pollData.expDate);
+            var expDate = new Date(pollData.expDate*1000);
             //expDate.setTime(pollData.expDate*1000);  // number in miliseconds
             //console.log(expDate, pollData.expDate);
 
