@@ -3,14 +3,41 @@
 
     <div class="col-md-8 col-md-offset-2">
         <!-- TODO: include error messages based on which input is invalid -->
+        <div class="special-error alert alert-danger" role="alert" ng-show="specialError">
+            Unknown error. {{specialError.message}} ({{specialError.code}})
+        </div>
+
+        <div class="error-alerts" ng-show="newPollForm.$invalid">
+            <div class="alert alert-danger" role="alert" ng-show="newPollForm.name.$invalid && newPollForm.name.$touched">
+                Name should be between 5 and 100 characters.
+            </div>
+
+            <div class="option-errors" ng-repeat="optionError in newPoll.options">
+                <div class="alert alert-danger" role="alert" ng-show="newPollForm['option'+{{$index}}].$invalid && newPollForm['option'+{{$index}}].$touched">
+                    Option {{$index+1}} is required. Fill it in or delete it.
+                </div>
+            </div>
+
+            <div class="alert alert-danger" role="alert" ng-show="newPollForm.date.$invalid && newPollForm.date.$touched">
+                Expiry date is required.
+            </div>
+
+            <div class="alert alert-danger" role="alert" ng-show="newPoll.options.length < 2 || newPoll.options.length > 10">
+                There should be between 2 and 10 options.
+            </div>
+        </div>
 
         <form name="newPollForm">
             <fieldset class="form-group">
-                <label class="poll-name-input">
+                <label class="poll-name-input"
+                       ng-class="{'has-success': newPollForm.name.$valid,
+                           'has-error': newPollForm.name.$touched && newPollForm.name.$invalid}">
                     <h2>Name</h2>
                     <input type="text" name="name" ng-minlength="5" ng-maxlength="100" required
                            placeholder="{{examplePoll.name}}" class="form-control"
-                           ng-model="newPoll.name">
+                           ng-model="newPoll.name"
+                           ng-class="{'form-control-success': newPollForm.name.$valid,
+                           'form-control-error': newPollForm.name.$touched && newPollForm.name.$invalid}">
                 </label>
             </fieldset>
 
@@ -18,10 +45,13 @@
                 <h2>Options</h2>
                 <ul>
                     <li ng-repeat="option in newPoll.options">
-                        <label>
+                        <label ng-class="{'has-success': newPollForm['option'+{{$index}}].$valid,
+                           'has-error': newPollForm['option'+{{$index}}].$touched && newPollForm['option'+{{$index}}].$invalid}">
                             <input type="text" name="option{{$index}}" ng-maxlength="100" required
                                    placeholder="{{examplePoll.options[$index].name}}"
-                                   class="form-control" ng-model="newPoll.options[$index].name">
+                                   class="form-control" ng-model="newPoll.options[$index].name"
+                                   ng-class="{'form-control-success': newPollForm['option'+{{$index}}].$valid,
+                                   'form-control-error': newPollForm['option'+{{$index}}].$touched && newPollForm['option'+{{$index}}].$invalid}">
                         </label>
                         <button type="button" ng-click="removeOption($index)">-</button>
                         <!-- TODO: improve the visuals of the delete button -->
@@ -38,10 +68,11 @@
                 </label>
             </div>
 
-            <div>
+            <div ng-class="{'has-error': newPollForm.date.$touched && newPollForm.date.$invalid}">
                 Expiry date
-                <input type="text" data-field="datetime" readonly
-                       ng-model="newPoll.expDate" class="form-control date-picker">
+                <input type="text" data-field="datetime" readonly required name="date"
+                       ng-model="newPoll.expDate" class="form-control date-picker"
+                       ng-class="{'form-control-error': newPollForm.date.$touched && newPollForm.date.$invalid}">
 
                 <div id="dtBox"></div>
                 <script>
@@ -52,9 +83,10 @@
                 </script>
             </div>
 
-            <div class="m-t-md">
+            <div class="m-t-md" ng-class="{'has-error': newPollForm.$invalid, 'has-success': newPollForm.$valid}">
                 <input type="submit" value="Create" class="form-control" ng-click="addNewPoll()"
-                       ng-disabled="newPollForm.$invalid || newPoll.options.length < 2">
+                       ng-disabled="newPollForm.$invalid || newPoll.options.length < 2"
+                       ng-class="{'form-control-error': newPollForm.$invalid, 'form-control-success': newPollForm.$valid}">
             </div>
         </form>
     </div>

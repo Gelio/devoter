@@ -22,6 +22,8 @@ function formatToDateTimePicker(date) {
 newPollModule.controller('newPollCtrl', ['$scope', "$http", "$state", function($scope, $http, $state) {
     var currDate = new Date();
 
+    $scope.specialError = null;
+
     $scope.newPoll = new Poll({
         options: [new Option({}), new Option({})],
         expDate: formatToDateTimePicker(new Date(currDate.getTime() + minPollLength*1000))
@@ -48,6 +50,8 @@ newPollModule.controller('newPollCtrl', ['$scope', "$http", "$state", function($
         if($scope.newPollForm.$invalid)
             return;
 
+        $scope.specialError = null; 
+
         var dateSplit = {},
             spaced = $scope.newPoll.expDate.split(' ');
         dateSplit.date = spaced[0].split('-');
@@ -63,7 +67,11 @@ newPollModule.controller('newPollCtrl', ['$scope', "$http", "$state", function($
             .then(function(response) {
                 console.log('added properly', response);
                 // TODO: check for errors in the response
-                $state.go('view-poll', {pollID: response.data.id});
+                if(response.date.id)
+                    $state.go('view-poll', {pollID: response.data.id});
+                else {
+                    $scope.specialError = response.date.error;
+                }
             }, function(response) {
                 console.log('error while adding a poll', response);
             });
