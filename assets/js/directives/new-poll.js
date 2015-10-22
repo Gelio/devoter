@@ -50,7 +50,7 @@ newPollModule.controller('newPollCtrl', ['$scope', "$http", "$state", function($
         if($scope.newPollForm.$invalid)
             return;
 
-        $scope.specialError = null; 
+        $scope.specialError = null;
 
         var dateSplit = {},
             spaced = $scope.newPoll.expDate.split(' ');
