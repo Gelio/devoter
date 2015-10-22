@@ -3,7 +3,7 @@ var mainPageModule = angular.module('mainPage', ['parserModule']);
 mainPageModule.controller('mainPageCtrl', ['$scope', 'PollParser', function($scope, PollParser) {
     $scope.topPolls = null;
 
-    PollParser.fetchPolls('php/most-popular.php', function(data) {
+    PollParser.fetchPolls('php/show-multiple-polls.php', function(data) {
         $scope.topPolls = data;
     }, function(response) {
         // Error already logged

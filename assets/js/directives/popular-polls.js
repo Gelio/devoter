@@ -3,7 +3,7 @@ var popularPollsModule = angular.module('popularPolls', ['parserModule']);
 popularPollsModule.controller('popularPollsCtrl', ['$scope', 'PollParser', function($scope, PollParser) {
 
     $scope.polls = [];
-    PollParser.fetchPolls('php/most-popular.php', function(data) {
+    PollParser.fetchPolls('php/show-multiple-polls.php', function(data) {
         $scope.polls = data;
     }, function(response) {
         // Error already printed
