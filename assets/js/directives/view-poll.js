@@ -13,12 +13,12 @@ viewPollsModule.controller('viewPollCtrl', ['$scope', '$stateParams', 'PollParse
     );*/
     $scope.poll = null;
 
-    PollParser.fetchPolls('php/single-poll.php', function(poll) {
+    PollParser.fetchPolls('php/show-poll.php', function(poll) {
         $scope.poll = poll;
     }, function(response) {
         // Error already printed
         // TODO: proper error handling and message display
-    }, {id: $stateParams.pollID}, true);
+    }, {id: $stateParams.pollID}, false);
 }]);
 
 viewPollsModule.directive('viewPoll', function() {
