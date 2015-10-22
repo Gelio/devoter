@@ -26,6 +26,8 @@ var Poll = function(params) {
 
     this.hasVoted = params.hasVoted;
 
+    this.private = params.private || false;
+
 
     if(params.totalVotes === undefined)
         params.totalVotes = this.options.map(function(option) {

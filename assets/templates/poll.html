@@ -35,5 +35,7 @@
         </div>
 
         <p ng-show="data.expDate && fullscreen">Poll expires: {{data.expDate | date:'dd-MM-yyyy HH:mm'}}</p>
+
+        <p ng-show="data.private && fullscreen" class="text-warning">This poll is private</p>
     </div>
 </div>
