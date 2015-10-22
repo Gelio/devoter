@@ -19,7 +19,7 @@ function formatToDateTimePicker(date) {
     return day + "-" + month + "-" + year + " " + hours + ":" + minutes;
 }
 
-newPollModule.controller('newPollCtrl', ['$scope', "$http", function($scope, $http) {
+newPollModule.controller('newPollCtrl', ['$scope', "$http", "$state", function($scope, $http, $state) {
     var currDate = new Date();
 
     $scope.newPoll = new Poll({
@@ -62,6 +62,8 @@ newPollModule.controller('newPollCtrl', ['$scope', "$http", function($scope, $ht
         })
             .then(function(response) {
                 console.log('added properly', response);
+                // TODO: check for errors in the response
+                $state.go('view-poll', {pollID: response.data.id});
             }, function(response) {
                 console.log('error while adding a poll', response);
             });
