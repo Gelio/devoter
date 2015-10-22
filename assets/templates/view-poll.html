@@ -1,3 +1,8 @@
 <div class="container" ng-if="poll">
     <poll data="poll" fullscreen="1"></poll>
+
+    <div class="col-xs-12 m-t-lg">
+        <h3>Share this poll:</h3>
+        <input type="text" class="form-control" readonly ng-value="pollURL" onclick="this.select()">
+    </div>
 </div>

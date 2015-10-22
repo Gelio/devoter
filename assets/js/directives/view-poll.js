@@ -1,16 +1,7 @@
 var viewPollsModule = angular.module('viewPoll', ['ui.router']);
 
 viewPollsModule.controller('viewPollCtrl', ['$scope', '$stateParams', 'PollParser', function($scope, $stateParams, PollParser) {
-    /*$scope.poll = new Poll(
-        $stateParams.pollID,
-        "Poll name",
-        [
-            new Option('A', 10),
-            new Option('B', 20),
-            new Option('C', 10)
-        ],
-        new Date()
-    );*/
+    $scope.pollURL = window.location.href;
     $scope.poll = null;
 
     PollParser.fetchPolls('php/show-poll.php', function(poll) {
