@@ -1,7 +1,7 @@
 ﻿<?php
 	include 'config.inc.php';
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' && empty($_POST)) $_POST = json_decode(file_get_contents('php://input'), true);
-	
+	$output=array();
 	$name = $_POST['name'];
 	$option_number = $_POST['options'];
 	
@@ -31,9 +31,7 @@ if(strlen($name)>4 && strlen($name)<101 && !$pusty && $opcount>1 &&$opcount<11&&
 		PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 	 
 		//dodanie ankiety
-		$stmt=$pdo->query('SELECT id FROM polls;') ;
-		$id= $stmt->rowCount()+1;
-	
+		
 		$stmt = $pdo->prepare('INSERT INTO `polls` (  `name`, `total_votes`,`private`,`expire_date`)	VALUES(
 			:name,
 			:total_votes,
@@ -49,7 +47,10 @@ if(strlen($name)>4 && strlen($name)<101 && !$pusty && $opcount>1 &&$opcount<11&&
 			$stmt -> execute();
 
 		//dodanie opcji
+		$id=$pdo->lastInsertId();
+		
 		$i=0;
+		
 		foreach($option_number as $current=>$opname)
 		{
 			$stmt = $pdo -> prepare('INSERT INTO `options` (  `poll_id`, `name`,`amount`)	VALUES(
@@ -65,72 +66,68 @@ if(strlen($name)>4 && strlen($name)<101 && !$pusty && $opcount>1 &&$opcount<11&&
 		}
 
 		
-		$erro= array
-		(
-			'error' => 0,
-			'message' => $id
-		);
-		echo json_encode($erro);
+		
+		echo json_encode($id);
 	}
     
 	catch(PDOException $e)
 	{
-		$erro= array
+		$output['error']= array
 		(
-			'error' => 1,
+			'code' => 1,
 			'message' => 'Connection could not be created: '. $e->getMessage()
 		);
-		echo json_encode($erro);
+		echo json_encode($output);
 	}
 }
 //ERROR HANDLING
 elseif(strlen($name)<5)
 {
-	$erro= array
+	$output['error']= array
 		(
-			'error' => 4,
+			'code' => 4,
 			'message' => 'Poll title too short (less than five chars) !'
 		);
-		echo json_encode($erro);
+		echo json_encode($output);
 }
 elseif(strlen($name)>100)
 {
-	 $erro= array
+	 $output['error']= array
 		(
-			'error' => 4,
+			'code' => 4,
 			'message' => 'Poll title too long (more than a hundred chars) !'
 		);
-		echo json_encode($erro);
+		echo json_encode($output);
 	
 }
 elseif($opcount<2) 
 {
-	$erro= array
+	$output['error']= array
 		(
-			'error' => 5,
+			'code' => 5,
 			'message' => 'Not enough (less than two) options!'
 		);
-		echo json_encode($erro);
+		echo json_encode($output);
 
 }
 elseif($opcount>10)
 {
-	 $erro= array
+	 $output['error']= array
 		(
-			'error' => 5,
+			'code' => 5,
 			'message' => 'Too many (more than ten) options!'
 		);
-		echo json_encode($erro);
+		echo json_encode($output);
 	
 }
 elseif($expire_date<=time()) 
 {
-	 $erro= array
+	 $output['error']= array
 		(
-			'error' => 7,
+			'code' => 7,
 			'message' => 'Set expire date in the future!'
 		);
-		echo json_encode($erro);
+		echo json_encode($output);
 	
 }
 ?>

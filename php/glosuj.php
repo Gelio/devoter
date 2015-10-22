@@ -2,15 +2,13 @@
 <?php
 	include 'config.inc.php';
 
-
+$output= array();
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && empty($_POST)) $_POST = json_decode(file_get_contents('php://input'), true);
 
-	$ip = getenv('HTTP_CLIENT_IP')?:
-	getenv('HTTP_X_FORWARDED_FOR')?:
-	getenv('HTTP_X_FORWARDED')?:
-	getenv('HTTP_FORWARDED_FOR')?:
-	getenv('HTTP_FORWARDED')?:
-	getenv('REMOTE_ADDR');
+	$ip = $_SERVER['REMOTE_ADDR'];
+if (array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER)) {
+    $ip = array_pop(explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']));
+}
 
 if (filter_var($ip, FILTER_VALIDATE_IP))
 {
@@ -49,44 +47,40 @@ if (filter_var($ip, FILTER_VALIDATE_IP))
 			$stmt -> bindValue(':opt', $option, PDO::PARAM_INT);
 			$stmt -> execute();
 			
+			$succesful=true;
+			echo json_encode($succesful);
 			
-			$erro= array
-			(
-				'error' => 0,
-				'message' => ""
-			);
-			echo json_encode($erro);
 		}
 		else 
 		{
-			$erro= array
+			$output['error']= array
 		(
-			'error' => 8,
+			'code' => 8,
 			'message' => "You already DeVoted for some option!"
 		);
-		echo json_encode($erro);
+		echo json_encode($output['error']);
 		}
    }
 	
 	catch(PDOException $e)
    {
-	    $erro= array
+	    $output['error']= array
 		(
-			'error' => 1,
+			'code' => 1,
 			'message' => 'Connection could not be created: ' . $e->getMessage()
 		);
-		echo json_encode($erro);
+		echo json_encode($output['error']);
    }
 
 }
 else
 {
-	$erro= array
+	$output['error']= array
 		(
-			'error' => 0,
+			'code' => 1,
 			'message' => "Your IP couldn't be validated!"
 		);
-	echo json_encode($erro);
+	echo json_encode($output['error']);
 	
 }
 ?>
