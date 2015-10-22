@@ -1,11 +1,12 @@
 var viewPollsModule = angular.module('viewPoll', ['ui.router']);
 
 viewPollsModule.controller('viewPollCtrl', ['$scope', '$stateParams', 'PollParser', function($scope, $stateParams, PollParser) {
-    $scope.pollURL = window.location.href;
     $scope.poll = null;
+    $scope.pollURL = "Retrieving...";
 
     PollParser.fetchPolls('php/show-poll.php', function(poll) {
         $scope.poll = poll;
+        $scope.pollURL = window.location.href;
     }, function(response) {
         // Error already printed
         // TODO: proper error handling and message display
