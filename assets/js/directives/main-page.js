@@ -3,7 +3,6 @@ var mainPageModule = angular.module('mainPage', ['parserModule']);
 mainPageModule.controller('mainPageCtrl', ['$scope', 'PollParser', function($scope, PollParser) {
     $scope.topPolls = null;
 
-    // TODO: Add a proper URL 'most-popular.php'
     PollParser.fetchPolls('php/most-popular.php', function(data) {
         $scope.topPolls = data;
     }, function(response) {
