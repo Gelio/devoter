@@ -3,12 +3,18 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 08 Paü 2015, 18:37
+-- Czas generowania: 22 Pa≈∫ 2015, 13:16
 -- Wersja serwera: 5.6.25
 -- Wersja PHP: 5.6.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Baza danych: `devoter`
@@ -50,11 +56,11 @@ CREATE TABLE IF NOT EXISTS `polls` (
   `name` varchar(100) COLLATE utf8_bin NOT NULL,
   `total_votes` int(11) NOT NULL,
   `private` tinyint(1) NOT NULL DEFAULT '0',
-  `expire_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `expire_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Indeksy dla zrzutÛw tabel
+-- Indeksy dla zrzut√≥w tabel
 --
 
 --
@@ -94,3 +100,6 @@ ALTER TABLE `options`
 --
 ALTER TABLE `polls`
   MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
