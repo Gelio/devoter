@@ -67,10 +67,10 @@ newPollModule.controller('newPollCtrl', ['$scope', "$http", "$state", function($
             .then(function(response) {
                 console.log('added properly', response);
                 // TODO: check for errors in the response
-                if(response.date.id)
+                if(response.data.id)
                     $state.go('view-poll', {pollID: response.data.id});
                 else {
-                    $scope.specialError = response.date.error;
+                    $scope.specialError = response.data.error;
                 }
             }, function(response) {
                 console.log('error while adding a poll', response);

@@ -66,8 +66,8 @@ if(strlen($name)>4 && strlen($name)<101 && !$pusty && $opcount>1 &&$opcount<11&&
 		}
 
 		
-		
-		echo json_encode($id);
+		$outputArray = array('id' => $id);
+		echo json_encode($outputArray);
 	}
     
 	catch(PDOException $e)
