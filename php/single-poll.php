@@ -3,7 +3,7 @@
 	
 	$wyjscie = array();
 	
-	if (empty($_GET['startFrom']))
+	if (empty($_GET['id']) || !is_numeric($_GET['id']))
 	{
 		$wyjscie['error'] = array (
 			'code' => 11,
