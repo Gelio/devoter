@@ -15,8 +15,8 @@ if(!isset($_GET['startFrom']) || !is_numeric($_GET['startFrom']))
 if(!isset($_GET['limitTo']) || !is_numeric($_GET['startFrom']))
     $_GET['limitTo'] = 3;
 
-$startFrom = $_GET['startFrom'];
-$limitTo = $_GET['limitTo'];
+$startFrom = intval($_GET['startFrom']);
+$limitTo = intval($_GET['limitTo']);
 
 
 // Connect to the DB
@@ -38,9 +38,8 @@ if(array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER)) {
     $ipAddress = array_pop(explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']));
 }
 
-
 // Fetch overall info
-$getQuery = $db->prepare('SELECT * FROM polls WHERE private = 0 AND expire_date >= NOW() ORDER BY total_votes DESC LIMIT :startFrom, :limitTo;');
+$getQuery = $db->prepare('SELECT * FROM polls WHERE private = 0 AND expire_date >= NOW() ORDER BY total_votes DESC LIMIT :startFrom, :limitTo;') ;
 $getQuery->bindParam(":startFrom", $startFrom, PDO::PARAM_INT);
 $getQuery->bindParam(":limitTo", $limitTo, PDO::PARAM_INT);
 $getQuery->execute();

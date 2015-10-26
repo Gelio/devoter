@@ -1,6 +1,10 @@
 <?php
+	// TODO: After SQL injection is fixed delete this exit
+	exit("SQL injection is still not fixed");
+
 	include "config.inc.php";
-	
+
+
 	$wyjscie = array();
 	
 	if (empty($_GET['startFrom']))
@@ -34,7 +38,8 @@
 	{
 		$ipAddress = array_pop(explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']));
 	}
-	
+
+	// TODO: prevent SQL Injection by using bindParam instead of inserting the string in this query
 	$getPolls = $pdo -> prepare("SELECT * FROM polls WHERE private = 0 AND expire_date >= NOW() ORDER BY total_votes DESC
 	LIMIT $startFrom, $limitTo;");
 	$getPolls->execute();
