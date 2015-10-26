@@ -39,8 +39,10 @@
 
 	$priv = 0;
 	$getPolls = $pdo -> prepare("SELECT * FROM polls WHERE private = :private AND expire_date >= NOW() ORDER BY total_votes DESC
-	LIMIT $startFrom, $limitTo;");
+	LIMIT :startFrom, :limitTo;");
 	$getPolls->bindParam(':private', $priv, PDO::PARAM_INT);
+	$getPolls->bindParam(':startFrom', $startFrom, PDO::PARAM_INT);
+	$getPolls->bindParam(':limitTo', $limitTo, PDO::PARAM_INT);
 	$getPolls->execute();
 	
 	while($poll = $getPolls -> fetch())
