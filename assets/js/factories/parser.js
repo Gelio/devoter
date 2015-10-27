@@ -75,12 +75,15 @@ parserModule.factory('PollParser', ['$http', function($http) {
             httpRequestConfig.params = data;
         }
 
-        console.log(httpRequestConfig);
+        if(!production)
+            console.log(httpRequestConfig);
 
         $http(httpRequestConfig).then(
             function(response) {
                 // Success
-                console.log(response);
+                if(!production)
+                    console.log(response);
+
                 var outputData;
 
                 if(Array.isArray(response.data)) {

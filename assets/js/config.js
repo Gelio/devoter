@@ -19,3 +19,7 @@ var globalColors = Chart.defaults.global.colours;
 chartColors.forEach(function(color) {
     globalColors.push(color);
 });
+
+
+// Display httpRequest and response
+var production = true;
