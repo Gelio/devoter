@@ -4,7 +4,7 @@ viewPollsModule.controller('viewPollCtrl', ['$scope', '$stateParams', 'PollParse
     $scope.poll = null;
     $scope.pollURL = "Retrieving...";
 
-    PollParser.fetchPolls('php/show-poll.php', function(poll) {
+    PollParser.fetchPolls('php/single-poll.php', function(poll) {
         $scope.poll = poll;
         $scope.pollURL = window.location.href;
     }, function(response) {

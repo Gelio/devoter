@@ -34,7 +34,7 @@
 		die(json_encode($wyjscie));
 	}
 	
-	$getPoll = $pdo -> prepare("SELECT * FROM polls WHERE id = :pollID AND expire_date >= NOW();");
+	$getPoll = $pdo -> prepare("SELECT * FROM polls WHERE id = :pollID AND expire_date >= NOW() LIMIT 1;");
 	$getPoll->bindParam(':pollID', $id, PDO::PARAM_INT);
 	$getPoll->execute();
 	if($getPoll->rowCount() == 0) 
@@ -75,8 +75,8 @@
 		else
 			$wynik['hasVoted'] = true;
 
-		array_push($wyjscie, $wynik);
+		//array_push($wyjscie, $wynik);
 	
 	
-	echo json_encode($wyjscie);
+	echo json_encode($wynik);
 ?>
