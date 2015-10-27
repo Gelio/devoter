@@ -67,7 +67,7 @@
 		
 		$checkIp = $pdo->prepare("SELECT id FROM ip_voted WHERE poll_id = :pollID AND IP = :IP LIMIT 1;");
 		$checkIp->bindParam(':pollID', $id, PDO::PARAM_INT);
-		$checkIp->bindParam(':IP', $ip, PDO::PARAM_STR);
+		$checkIp->bindParam(':IP', $ipAddress, PDO::PARAM_STR);
 		$checkIp->execute();
 
 		if($checkIp->rowCount() == 0)
