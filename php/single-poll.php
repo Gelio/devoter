@@ -48,11 +48,13 @@
 	
 	$poll = $getPoll -> fetch(PDO::FETCH_ASSOC);
 		
+		$expDate = new DateTime($poll['expire_date']);
+		
 		$wynik = array(
 		'id' => $poll['id'],
 		'name' => $poll['name'],
 		'private' => $poll['private'],
-		'expDate' => $poll['expire_date'],
+		'expDate' => $expDate->getTimestamp(),
 		'options' => array()
 		);
 		
